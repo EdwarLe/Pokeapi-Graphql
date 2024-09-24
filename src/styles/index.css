@@ -18,33 +18,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
-    .loading-screen,
-    .error-screen {
+.loading-screen,
+.error-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .pokeball-img-screen {
+        animation: rotateBall infinite 1s linear;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        width: 40px;
 
-        .pokeball-img-screen {
-            animation: rotateBall infinite 1s linear;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-
-            img {
-                width: 100%;
-            }
+        img {
+            width: 100%;
         }
+    }
 
-        p {
-            font-size: var(--title-mobile-tablet);
-            color: var(--white);
-            text-align: center;
-            padding: 0 1rem;
-        }
+    p {
+        font-size: var(--title-mobile-tablet);
+        color: var(--white);
+        text-align: center;
+        padding: 0 1rem;
     }
 }
 
