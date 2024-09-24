@@ -1,34 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
+import useFetchPokemon from './hooks/useFetchPokemon'
+import HomePage from './pages/HomePage'
+import './styles/index.css'
+import pokeball from "./assets/pokeball.png"
+import { useEffect } from 'react';
+import { setPokemonList } from './redux/pokemonSlice';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const { loading, error, data } = useFetchPokemon()
+  const pokemonList = useSelector(state => state.pokemon.pokemonList)
+  console.log(error)
+
+  useEffect(() => {
+    if(data) {
+      dispatch(setPokemonList(data.pokemon_v2_pokemonspecies))
+    }
+  }, [data, dispatch])
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <section className='app'>
+          {
+            loading
+            ? 
+            <div className='loading-screen'>
+              <div className='pokeball-img-screen'>
+                <img src={pokeball} alt="pokeball" />
+              </div>
+              <p>...Loading</p>
+            </div>
+            : error
+            ? <div className='error-screen'>
+            <div className='pokeball-img-screen'>
+              <img src={pokeball} alt="pokeball" />
+            </div>
+            <p>Ops! something went wrong.</p>
+            <p>Please reload the page.</p>
+          </div>
+          : <HomePage pokemons={pokemonList}/>
+          }
+        </section>
   )
 }
 

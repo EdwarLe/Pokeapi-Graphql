@@ -1,0 +1,111 @@
+@import url(./variables.css);
+
+.home-page {
+    background-color: var(--primary);
+
+    header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem;
+
+        /* Title and logo styles */
+
+        .nav-title {
+            display: flex;
+            gap: 1rem;
+
+            h1 {
+                font-size: var(--title-mobile-tablet);
+                color: var(--background);
+            }
+
+            .pokeball-img {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 24px;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        /* input and filter styles  */
+        .input-filter-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+
+            .input-wrapper {
+                width: 80%;
+
+                input {
+                    border-radius: 2rem;
+                    outline: none;
+                    border: none;
+                    padding: 0.3rem 0.8rem;
+                    width: 100%;
+                    box-shadow: inset 1px 1px 5px darkgray;
+                }
+            }
+
+            .filter-wrapper {
+                padding: 0.3rem 0.8rem;
+                background-color: var(--white);
+                border-radius: 2rem;
+                font-size: var(--first-body-mobile-tablet);
+                box-shadow: inset 1px 1px 5px darkgray;
+
+            }
+        }
+    }
+
+    .pokemon-list {
+        background-color: var(--background);
+        border-radius: 0.5rem;
+        padding: 1rem 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 0.5rem;
+
+        .pokemon-card {
+            background-color: var(--background);
+            width: 100%;
+            height: 120px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 1px 1px 5px darkgray;
+
+            .pokemon-img-card {
+                width: 100%;
+                position: relative;
+                z-index: 200;
+            }
+
+            p {
+                position: relative;
+                z-index: 300;
+            }
+
+            .bg-decoration {
+                background-color: var(--light-gray);
+                width: 100%;
+                height: 45%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: 0;
+                border-radius: 0.5rem;
+            }
+        }
+    }
+
+}
