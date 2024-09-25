@@ -81,10 +81,15 @@
                 }
             }
 
-            .types_details {
-                background-color: aquamarine;
-                padding: 0.5rem 1rem;
-                border-radius: 1rem;
+            .type-container {
+                display: flex;
+                gap: 1rem;
+
+                .types_details {
+                    background-color: aquamarine;
+                    padding: 0.5rem 1rem;
+                    border-radius: 1rem;
+                }
             }
         }
 

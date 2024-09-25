@@ -16,9 +16,14 @@ const HomePage = () => {
     const foundPokemon = useSelector(state => state.pokemon.foundPokemonList)
     const quantity = 18
     const dispatch = useDispatch()
+    
+    const types = useSelector(state => state.pokemon.filter)
+    const typesFiltered = pokemonList.filter(poke => poke.pokemon_v2_pokemontypes.some(type => type.pokemon_v2_type.name === types))
+    
     const dataPokemons = foundPokemon.length !== 0 ? foundPokemon : pokemonList
     const { lastPages, itemsInCurrentPage, pagesInCurrentBlock } = paginateData(dataPokemons, currentPage, quantity)
-
+    
+    console.log(typesFiltered)
     const handleInputChange = (e) => {
         setValueInput(e.target.value)
     }

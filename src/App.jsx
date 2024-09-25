@@ -8,7 +8,8 @@ import './styles/homePage.css'
 import pokeball from "./assets/pokeball.png"
 import { Route, Routes } from 'react-router-dom'
 import { useEffect } from 'react'
-import { setPokemonList } from './redux/pokemonSlice'
+import { setFilterList, setPokemonList } from './redux/pokemonSlice'
+import FavoritesPage from './pages/FavoritesPage'
 
 function App() {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ function App() {
     useEffect(() => {
         if(data) {
         dispatch(setPokemonList(data.pokemon_v2_pokemon))
+        dispatch(setFilterList(data.pokemon_v2_type))
         }
     }, [data, dispatch])
 
@@ -49,6 +51,7 @@ function App() {
     <Routes>
         <Route exact path='/' element={<HomePage />}/>
         <Route path='/pokemon/:id' element={<PokemonDetailsPage />}/>
+        <Route path='/favorites' element={<FavoritesPage />}/>
     </Routes>
   )
 }

@@ -26,7 +26,10 @@ const PokemonDetails = ({ pokemon }) => {
                 <div className='sprite-details'>
                     <img src={pokemon.pokemon_v2_pokemonsprites[0].sprites.other["official-artwork"].front_default} alt={pokemon.name} />
                 </div>
-                <p className='types_details'>Types</p>
+                <div className='type-container'>
+                    {pokemon.pokemon_v2_pokemontypes.map(type => <p key={type.pokemon_v2_type.name} className='types_details'>{type.pokemon_v2_type.name}</p>)}
+                </div>
+                
             </div>
             <div className='data-details'>
                 <p><span>{pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.pokemon_v2_generation.name}</span>Generation</p>

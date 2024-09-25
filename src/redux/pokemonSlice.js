@@ -4,7 +4,8 @@ const initialState = {
     pokemonList: [],
     foundPokemonList: [],
     favorites: [],
-    filter: ''
+    filter: '',
+    filterList: []
 }
 
 const pokemonSlice = createSlice({
@@ -29,11 +30,15 @@ const pokemonSlice = createSlice({
             state.favorites = state.favorites.filter(pokemon => pokemon.id !== action.payload)
         },
 
+        setFilterList: (state, action) => {
+            state.filterList = action.payload
+        },
+
         setFilter: (state, action) => {
             state.filter = action.payload
         }
     }
 })
 
-export const { setPokemonList, setPokemonFound, addFavorite, removeFavorite, setFilter } = pokemonSlice.actions
+export const { setPokemonList, setPokemonFound, addFavorite, removeFavorite, setFilter, setFilterList } = pokemonSlice.actions
 export default pokemonSlice.reducer

@@ -19,6 +19,9 @@ const GET_ALL_POKEMON = gql`
                 }
             }
         }
+        pokemon_v2_type {
+            name
+        }
     }`
 
 const useFetchPokemon = () => {
