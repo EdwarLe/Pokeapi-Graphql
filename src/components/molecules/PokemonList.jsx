@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import PokemonCard from '../atoms/PokemonCard'
 
 const PokemonList = ({ pokemons }) => {
-  console.log(pokemons)
   return (
     <div className="pokemon-list">
       {pokemons?.map(pokemon => (

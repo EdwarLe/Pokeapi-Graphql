@@ -17,7 +17,6 @@ function App() {
 
     useEffect(() => {
         if(data) {
-            console.log('Data from API: ', data.pokemon_v2_pokemonspecies)
         dispatch(setPokemonList(data.pokemon_v2_pokemonspecies))
         }
     }, [data, dispatch])

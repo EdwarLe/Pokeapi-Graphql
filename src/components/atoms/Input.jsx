@@ -8,6 +8,7 @@ const Input = ({
     onChange,
     placeholder = ''
 }) => {
+    
     return (
         <div className='input-wrapper'>
             {label && <label>{label}</label>}
