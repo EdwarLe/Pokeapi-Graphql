@@ -8,31 +8,43 @@ import { useEffect, useState } from "react"
 import { setPokemonFound } from "../redux/pokemonSlice"
 import Pagination from "../components/atoms/Pagination"
 import { paginateData } from "../utils/pagination"
+import { validateInput } from "../utils/validation"
 
 const HomePage = () => {
     const [valueInput, setValueInput] = useState('')
     const [currentPage, setCurrentPage] = useState(1)
+    // const [isValidationError, setIsValidationError] = useState(false)
+    const [validationErrorMsg, setValidationErrorMsg] = useState('')
     const pokemonList = useSelector(state => state.pokemon.pokemonList)
     const foundPokemon = useSelector(state => state.pokemon.foundPokemonList)
-    const quantity = 18
-    const dispatch = useDispatch()
-    
     const types = useSelector(state => state.pokemon.filter)
+    const dispatch = useDispatch()
+
+    const quantityPokemonPerPage = 18
+    
     const typesFiltered = pokemonList.filter(poke => poke.pokemon_v2_pokemontypes.some(type => type.pokemon_v2_type.name === types))
     
-    const dataPokemons = foundPokemon.length !== 0 ? foundPokemon : pokemonList
-    const { lastPages, itemsInCurrentPage, pagesInCurrentBlock } = paginateData(dataPokemons, currentPage, quantity)
+    const pokemonFiltered = typesFiltered.length !== 0 ? typesFiltered : pokemonList
+    const dataPokemons = foundPokemon.length !== 0 ? foundPokemon : pokemonFiltered
+    const pokemonSearched = pokemonFiltered.filter(poke => poke.name.toLowerCase().includes(valueInput.toLowerCase()))
+
+    const { lastPages, itemsInCurrentPage, pagesInCurrentBlock } = paginateData(dataPokemons, currentPage, quantityPokemonPerPage)
     
-    console.log(typesFiltered)
     const handleInputChange = (e) => {
-        setValueInput(e.target.value)
+        let value = e.target.value
+        setValueInput(value)
+
+        const error = validateInput(value)
+
+        setValidationErrorMsg(error)
+        
     }
 
-    const pokemonSearched = pokemonList.filter(poke => poke.name.includes(valueInput))
+
     
     useEffect(() => {
         dispatch(setPokemonFound(pokemonSearched))
-    }, [valueInput])
+    }, [valueInput, types, validationErrorMsg])
 
     return (
         <section className='app'>
@@ -45,7 +57,10 @@ const HomePage = () => {
                         <h1>Pokédex</h1>
                     </div>
                     <div className='input-filter-container'>
-                        <Input placeholder="Search by name..." value={valueInput} onChange={handleInputChange}/>
+                        <div className="input-error-container">
+                            <Input placeholder="Search by name..." value={valueInput} onChange={handleInputChange}/>
+                            <small>{validationErrorMsg && validationErrorMsg}</small>
+                        </div>
                         <Filter />
                     </div>
                 </header>

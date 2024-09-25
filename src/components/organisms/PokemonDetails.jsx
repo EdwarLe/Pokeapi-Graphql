@@ -2,8 +2,14 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import pokeballOpacity from '../../assets/pokeball-opacity.png'
 import backArrow from '../../assets/back-arrow.png'
+import { useDispatch } from 'react-redux'
+import { setFilter } from '../../redux/pokemonSlice'
 
 const PokemonDetails = ({ pokemon }) => {
+    const dispatch = useDispatch()
+
+    const handlerCleanTypes = () => dispatch(setFilter(''))
+
     return (
         <div className="pokemon-details">
             <div className='pokeball-details'>
@@ -13,6 +19,7 @@ const PokemonDetails = ({ pokemon }) => {
                 <div className='name-details'>
                     <Link
                         to={'/'}
+                        onClick={handlerCleanTypes}
                     >
                         <div className='back-arrow-details'>
                             <img src={backArrow}/>
