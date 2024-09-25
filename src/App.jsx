@@ -17,7 +17,7 @@ function App() {
 
     useEffect(() => {
         if(data) {
-        dispatch(setPokemonList(data.pokemon_v2_pokemonspecies))
+        dispatch(setPokemonList(data.pokemon_v2_pokemon))
         }
     }, [data, dispatch])
 

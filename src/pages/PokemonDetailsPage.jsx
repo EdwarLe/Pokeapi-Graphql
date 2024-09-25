@@ -12,8 +12,7 @@ const PokemonDetailsPage = () => {
     }
 
     const pokemon = pokemonList.find(poke => poke.id === parseInt(id))
-
-    console.log(pokemon)
+    
     return (
         <div className="pokemon-details-container">
             <PokemonDetails pokemon={pokemon}/>

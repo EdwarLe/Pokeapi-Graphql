@@ -8,7 +8,7 @@ const PokemonCard = ({ pokemon }) => {
             <Link
                 to={`/pokemon/${pokemon.id}`}>
                 <div className='pokemon-img-card'>
-                    <img src={pokemon.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0].sprites.front_default} alt={pokemon.name}/>
+                    <img src={pokemon.pokemon_v2_pokemonsprites[0].sprites.other["official-artwork"].front_default} alt={pokemon.name}/>
                 </div>
                 <p>{pokemon.name}</p>
                 <div className='bg-decoration'></div>

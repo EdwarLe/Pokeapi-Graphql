@@ -6,12 +6,18 @@ import '../styles/homePage.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from "react"
 import { setPokemonFound } from "../redux/pokemonSlice"
+import Pagination from "../components/atoms/Pagination"
+import { paginateData } from "../utils/pagination"
 
 const HomePage = () => {
     const [valueInput, setValueInput] = useState('')
+    const [currentPage, setCurrentPage] = useState(1)
     const pokemonList = useSelector(state => state.pokemon.pokemonList)
     const foundPokemon = useSelector(state => state.pokemon.foundPokemonList)
+    const quantity = 18
     const dispatch = useDispatch()
+    const dataPokemons = foundPokemon.length !== 0 ? foundPokemon : pokemonList
+    const { lastPages, itemsInCurrentPage, pagesInCurrentBlock } = paginateData(dataPokemons, currentPage, quantity)
 
     const handleInputChange = (e) => {
         setValueInput(e.target.value)
@@ -22,10 +28,6 @@ const HomePage = () => {
     useEffect(() => {
         dispatch(setPokemonFound(pokemonSearched))
     }, [valueInput])
-    
-    
-
-    console.log(foundPokemon)
 
     return (
         <section className='app'>
@@ -42,7 +44,9 @@ const HomePage = () => {
                         <Filter />
                     </div>
                 </header>
-                <PokemonList pokemons={foundPokemon.length !== 0 ? foundPokemon : pokemonList}/>
+                <Pagination lastPages={lastPages} pagesInCurrentBlock={pagesInCurrentBlock} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
+                <PokemonList pokemons={itemsInCurrentPage}/>
+                <Pagination lastPages={lastPages} pagesInCurrentBlock={pagesInCurrentBlock} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
             </div>
         </section>
         

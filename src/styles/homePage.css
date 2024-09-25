@@ -2,6 +2,9 @@
 
 .home-page {
     background-color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
     header {
         display: flex;
@@ -88,6 +91,10 @@
                 width: 100%;
                 position: relative;
                 z-index: 200;
+
+                img {
+                    width: 100%;
+                }
             }
 
             p {
@@ -113,6 +120,15 @@
                 border-radius: 0.5rem;
             }
         }
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--white);
+        list-style: none;
+        gap: 0.3rem;
     }
 
 }

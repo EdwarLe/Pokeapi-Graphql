@@ -4,7 +4,6 @@ import pokeballOpacity from '../../assets/pokeball-opacity.png'
 import backArrow from '../../assets/back-arrow.png'
 
 const PokemonDetails = ({ pokemon }) => {
-    console.log(pokemon)
     return (
         <div className="pokemon-details">
             <div className='pokeball-details'>
@@ -25,14 +24,14 @@ const PokemonDetails = ({ pokemon }) => {
             </div>
             <div className='sprites-types-details'>
                 <div className='sprite-details'>
-                    <img src={pokemon.pokemon_v2_pokemons[0].pokemon_v2_pokemonsprites[0].sprites.front_default} alt={pokemon.name} />
+                    <img src={pokemon.pokemon_v2_pokemonsprites[0].sprites.other["official-artwork"].front_default} alt={pokemon.name} />
                 </div>
                 <p className='types_details'>Types</p>
             </div>
             <div className='data-details'>
-                <p><span>{pokemon.pokemon_v2_pokemons[0].pokemon_v2_pokemonspecy.generation_id}</span>Generation</p>
-                <p><span>{pokemon.pokemon_v2_pokemons[0].height} kg</span>Height</p>
-                <p><span>{pokemon.pokemon_v2_pokemons[0].weight} m</span>Weight</p>
+                <p><span>{pokemon.pokemon_v2_pokemontypes[0].pokemon_v2_type.pokemon_v2_generation.name}</span>Generation</p>
+                <p><span>{pokemon.height} kg</span>Height</p>
+                <p><span>{pokemon.weight} m</span>Weight</p>
             </div>
         </div>
     )
